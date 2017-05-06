@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="LTHT.PeopleManagement.Views.PersonPage"
+             Title="{Binding Title}">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Save" Command="{Binding SavePersonCommand}" />
+    </ContentPage.ToolbarItems>
+    <ScrollView>
+        <StackLayout Spacing="20" Padding="15">
+            <Label IsVisible="{Binding NotValid}" Text="A person must have a first and last name." FontSize="Small" TextColor="{StaticResource Error}" />
+            <StackLayout>
+                <Label Text="Details" FontSize="Medium" />
+                <Label Text="First Name:" TextColor="{StaticResource LightTextColor}" FontSize="Small" />
+                <Entry Text="{Binding Person.FirstName}" Placeholder="Enter first name..." FontSize="Small" />
+                <Label Text="Lastname:" TextColor="{StaticResource LightTextColor}" FontSize="Small" />
+                <Entry Text="{Binding Person.LastName}" Placeholder="Enter last name..." FontSize="Small" />
+                <Label Text="Palindrome:" TextColor="{StaticResource LightTextColor}" FontSize="Small" />
+                <Label Text="{Binding Person.Palindrome, Converter={StaticResource booleanToYesNoConverter}}"
+                        TextColor="{Binding Person.Palindrome, Converter={StaticResource booleanToColourConverter}}"
+                        FontSize="Small" />
+            </StackLayout>
+            <StackLayout>
+                <Label Text="Colours" FontSize="Medium" />
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Red:" TextColor="{StaticResource LightTextColor}" FontSize="Small" />
+                    <Switch IsToggled="{Binding Path=Red, Mode=TwoWay}" HorizontalOptions="EndAndExpand" VerticalOptions="Start" />
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Green:" TextColor="{StaticResource LightTextColor}" FontSize="Small" />
+                    <Switch IsToggled="{Binding Path=Green, Mode=TwoWay}" HorizontalOptions="EndAndExpand" VerticalOptions="Start" />
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Blue:" TextColor="{StaticResource LightTextColor}" FontSize="Small" />
+                    <Switch IsToggled="{Binding Path=Blue, Mode=TwoWay}" HorizontalOptions="EndAndExpand" VerticalOptions="Start" />
+                </StackLayout>
+            </StackLayout>
+            <StackLayout>
+                <Label Text="Account" FontSize="Medium" />
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Authorised:" TextColor="{StaticResource LightTextColor}" FontSize="Small" />
+                    <Switch IsToggled="{Binding Path=Person.Authorised, Mode=TwoWay}" HorizontalOptions="EndAndExpand" VerticalOptions="Start" />
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Enabled:" TextColor="{StaticResource LightTextColor}" FontSize="Small" />
+                    <Switch IsToggled="{Binding Path=Person.Enabled, Mode=TwoWay}" HorizontalOptions="EndAndExpand" VerticalOptions="Start" />
+                </StackLayout>
+            </StackLayout>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

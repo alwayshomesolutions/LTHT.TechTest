@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Application xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:helpers="clr-namespace:LTHT.PeopleManagement.Helpers;assembly=LTHT.PeopleManagement"
+             x:Class="LTHT.PeopleManagement.App">
+  <Application.Resources>
+        <ResourceDictionary>
+            <Color x:Key="Primary">#2196F3</Color>
+            <Color x:Key="LightTextColor">#999999</Color>
+            <Color x:Key="Error">#DD0000</Color>
+
+            <Style TargetType="NavigationPage">
+                <Setter Property="BarBackgroundColor" Value="{StaticResource Primary}" />
+                <Setter Property="BarTextColor" Value="White" />
+            </Style>
+
+            <helpers:BooleanToYesNoConverter x:Key="booleanToYesNoConverter" />
+            <helpers:BooleanToColourConverter x:Key="booleanToColourConverter" />
+            <helpers:ColoursToStringConverter x:Key="coloursToStringConverter" />
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

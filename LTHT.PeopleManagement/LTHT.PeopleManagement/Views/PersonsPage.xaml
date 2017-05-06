@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="LTHT.PeopleManagement.Views.PersonsPage"
+             Title="{Binding Title}"
+             x:Name="PersonsPage">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Add Person" Clicked="AddPerson_Clicked" />
+    </ContentPage.ToolbarItems>
+    <StackLayout Orientation="Vertical">
+      <SearchBar x:Name="NameFilter" Placeholder="filter by name"></SearchBar>
+      <ListView x:Name="PersonsListView"
+				ItemsSource="{Binding Persons}"
+                VerticalOptions="FillAndExpand"
+                HasUnevenRows="true"
+                RefreshCommand="{Binding LoadPersonsCommand}"
+                IsPullToRefreshEnabled="true"
+                IsRefreshing="{Binding IsBusy, Mode=OneWay}"
+                CachingStrategy="RecycleElement"
+				ItemSelected="OnPersonSelected">
+        <ListView.ItemTemplate>
+          <DataTemplate>
+            <ViewCell>
+              <ViewCell.ContextActions>
+                    <MenuItem
+                        Command="{Binding Path=BindingContext.DeletePersonCommand, Source={x:Reference Name=PersonsPage}}"
+                        CommandParameter="{Binding .}"
+                        Text="Delete"
+                        IsDestructive="True"/>
+              </ViewCell.ContextActions>
+              <StackLayout Padding="10">
+                <Label Text="{Binding FullName}"
+                       LineBreakMode="NoWrap"
+                       Style="{DynamicResource ListItemTextStyle}"
+                       FontSize="16"/>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Palindrome: " TextColor="{StaticResource LightTextColor}" />
+                    <Label Text="{Binding Palindrome, Converter={StaticResource booleanToYesNoConverter}}"
+                           TextColor="{Binding Palindrome, Converter={StaticResource booleanToColourConverter}}"/>
+                    <Label Text="Authorised: " TextColor="{StaticResource LightTextColor}" />
+                    <Label Text="{Binding Authorised, Converter={StaticResource booleanToYesNoConverter}}"
+                           TextColor="{Binding Authorised, Converter={StaticResource booleanToColourConverter}}"/>
+                    <Label Text="Enabled: " TextColor="{StaticResource LightTextColor}" />
+                    <Label Text="{Binding Enabled, Converter={StaticResource booleanToYesNoConverter}}"
+                           TextColor="{Binding Enabled, Converter={StaticResource booleanToColourConverter}}"/>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Colours: " TextColor="{StaticResource LightTextColor}" />
+                    <Label Text="{Binding Colours, Converter={StaticResource coloursToStringConverter}}"
+                           LineBreakMode="NoWrap"
+                           Style="{DynamicResource ListItemDetailTextStyle}"
+                           FontSize="13"/>
+                </StackLayout>
+              </StackLayout>
+            </ViewCell>
+          </DataTemplate>
+        </ListView.ItemTemplate>
+      </ListView>
+    </StackLayout> 
+</ContentPage>
