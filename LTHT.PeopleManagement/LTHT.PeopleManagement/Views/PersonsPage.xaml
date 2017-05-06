@@ -34,22 +34,25 @@
                        Style="{DynamicResource ListItemTextStyle}"
                        FontSize="16"/>
                 <StackLayout Orientation="Horizontal">
-                    <Label Text="Palindrome: " TextColor="{StaticResource LightTextColor}" />
+                    <Label Text="Palindrome: " TextColor="{StaticResource LightTextColor}" FontSize="Small" />
                     <Label Text="{Binding Palindrome, Converter={StaticResource booleanToYesNoConverter}}"
+                           FontSize="Small"
                            TextColor="{Binding Palindrome, Converter={StaticResource booleanToColourConverter}}"/>
-                    <Label Text="Authorised: " TextColor="{StaticResource LightTextColor}" />
+                    <Label Text="Authorised: " TextColor="{StaticResource LightTextColor}" FontSize="Small" />
                     <Label Text="{Binding Authorised, Converter={StaticResource booleanToYesNoConverter}}"
+                           FontSize="Small"
                            TextColor="{Binding Authorised, Converter={StaticResource booleanToColourConverter}}"/>
-                    <Label Text="Enabled: " TextColor="{StaticResource LightTextColor}" />
+                    <Label Text="Enabled: " TextColor="{StaticResource LightTextColor}" FontSize="Small" />
                     <Label Text="{Binding Enabled, Converter={StaticResource booleanToYesNoConverter}}"
+                           FontSize="Small"
                            TextColor="{Binding Enabled, Converter={StaticResource booleanToColourConverter}}"/>
                 </StackLayout>
                 <StackLayout Orientation="Horizontal">
-                    <Label Text="Colours: " TextColor="{StaticResource LightTextColor}" />
+                    <Label Text="Colours: " TextColor="{StaticResource LightTextColor}" FontSize="Small" />
                     <Label Text="{Binding Colours, Converter={StaticResource coloursToStringConverter}}"
                            LineBreakMode="NoWrap"
-                           Style="{DynamicResource ListItemDetailTextStyle}"
-                           FontSize="13"/>
+                           FontSize="Small"
+                           Style="{DynamicResource ListItemDetailTextStyle}"/>
                 </StackLayout>
               </StackLayout>
             </ViewCell>

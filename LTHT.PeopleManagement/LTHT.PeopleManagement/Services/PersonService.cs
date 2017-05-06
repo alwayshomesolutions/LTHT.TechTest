@@ -23,10 +23,6 @@ namespace LTHT.PeopleManagement.Services
     /// </remarks>
     public class PersonService : IPersonService
     {
-        bool isInitialized;
-        string lastFilter = null;
-        List<Person> persons;
-
         /// <summary>
         /// Base Url for LTHT Test service
         /// </summary>
@@ -74,39 +70,6 @@ namespace LTHT.PeopleManagement.Services
             }
 
             return persons;
-        }
-
-        private async Task initialiseAsync(string filter = null)
-        {
-            if (isInitialized && filter == this.lastFilter)
-            {
-                return;
-            }
-
-            this.lastFilter = filter;
-
-            this.persons = new List<Person>();
-            var _persons = new List<Person>
-            {
-                new Person { Id = 1, FirstName = "Bob", LastName = "Bob"},
-                new Person { Id = 2, FirstName = "Fred", LastName = "Blogs", Authorised = true },
-                new Person { Id = 3, FirstName = "Jim", LastName = "Bob", Enabled = true },
-                new Person { Id = 4, FirstName = "No", LastName = "One", Valid = true },
-                new Person { Id = 5, FirstName = "Some", LastName = "Body", Colours = { new Colour() { Id = 1, Name = "Red" }, new Colour() { Id = 2, Name = "Green" }} },
-                new Person { Id = 6, FirstName = "Any", LastName = "One", Authorised = true, Enabled = true },
-            };
-
-            if (!string.IsNullOrEmpty(filter))
-            {
-                _persons = _persons.Where(p => p.FullName.ToLower().Contains(filter.ToLower())).ToList<Person>();
-            }
-
-            foreach (Person person in _persons)
-            {
-                this.persons.Add(person);
-            }
-
-            isInitialized = true;
         }
     }
 }
